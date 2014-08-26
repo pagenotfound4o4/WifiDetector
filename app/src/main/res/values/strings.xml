@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WiFiDetector</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_scan">Scan</string>
+    <string name="toast_wifi_enabled">WiFi Enabled</string>
+    <string name="toast_scan_ap_done">Scan AP done</string>
+</resources>
