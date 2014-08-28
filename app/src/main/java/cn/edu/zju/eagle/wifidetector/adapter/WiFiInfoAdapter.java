@@ -94,9 +94,7 @@ public class WiFiInfoAdapter extends BaseExpandableListAdapter {
         } else {
             holder = (ChildViewHolder)convertView.getTag();
         }
-        System.out.println("11111");
         List<Map<String, Object>> child = (List)dataList.get(groupPosition).get("child");
-        System.out.println("22222");
         holder.title.setText(child.get(childPosition).get("title").toString());
         holder.content.setText(child.get(childPosition).get("content").toString());
 

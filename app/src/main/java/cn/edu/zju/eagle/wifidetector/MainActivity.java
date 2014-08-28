@@ -3,11 +3,10 @@ package cn.edu.zju.eagle.wifidetector;
 import android.content.Context;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
@@ -32,7 +31,7 @@ public class MainActivity extends ActionBarActivity {
                 R.layout.wifi_info_list_child, getData());
         ExpandableListView elv_wifi_info = (ExpandableListView)findViewById(R.id.wifi_info_list);
         elv_wifi_info.setAdapter(adapter);
-        //elv_wifi_info.setEmptyView();
+        elv_wifi_info.setEmptyView(findViewById(R.id.elv_empty_view));
     }
 
 
@@ -49,6 +48,7 @@ public class MainActivity extends ActionBarActivity {
             return true;
         } else if (id == R.id.action_scan) {
             item.setEnabled(false);
+            // make sure wifi is on
             if (!wm.isWifiEnabled()) {
                 wm.setWifiEnabled(true);
                 while (wm.getWifiState() == WifiManager.WIFI_STATE_ENABLING) {
@@ -60,6 +60,8 @@ public class MainActivity extends ActionBarActivity {
                 }
                 Toast.makeText(this, getString(R.string.toast_wifi_enabled), Toast.LENGTH_SHORT).show();
             }
+
+            // scan ap
             if (wm.startScan()) {
                 resultList = wm.getScanResults();
                 Toast.makeText(this, getString(R.string.toast_scan_ap_done), Toast.LENGTH_SHORT).show();
@@ -71,6 +73,10 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Get expandable list view data from scan result
+     * @return data for expandable list view
+     */
     private List<? extends Map<String, ?>> getData() {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         List<Map<String, Object>> child;

@@ -5,4 +5,5 @@
     <string name="action_scan">Scan</string>
     <string name="toast_wifi_enabled">WiFi Enabled</string>
     <string name="toast_scan_ap_done">Scan AP done</string>
+    <string name="elv_empty_view">No AP Found</string>
 </resources>
